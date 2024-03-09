@@ -6,7 +6,7 @@ const APIkey = "7d7ff9f0";
 export default function MovieList({ movies, children }) {
   const [movieCards, setMovieCards] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => {  // fetch the detail from OMDB API
     const fetchOmdb = async () => {
       const ombdData = await Promise.all(
         movies.map(async ({ imdb_id }) => {
@@ -15,14 +15,13 @@ export default function MovieList({ movies, children }) {
           )).json();
         })
       );
-
       console.log({ ombdData });
       setMovieCards(ombdData);
-    }
+    };
 
-    fetchOmdb()
-    
+    fetchOmdb();
   }, [movies.length]);
+
 
   console.log({ movieCards });
 
